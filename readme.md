@@ -6,8 +6,8 @@ Download the model checkpoint and G2P model on Hugging Face and place them in th
 - [g2p.fst](https://huggingface.co/spaces/seanghay/KLEA/resolve/main/g2p.fst)
 
 ```javascript
-import { tts } from './model.js';
-import fs from 'node:fs/promises';
+import { tts } from "./model.js";
+import fs from "node:fs/promises";
 
 const wavBuffer = await tts("ស្រុកខ្មែរ");
 await fs.writeFile("audio.wav", wavBuffer);
@@ -15,3 +15,17 @@ await fs.writeFile("audio.wav", wavBuffer);
 
 [audio.wav](./audio.wav)
 
+## Test
+
+```bash
+npm i
+npm start ស្រុកខ្មែរ test.wav
+```
+
+## Container
+
+```bash
+docker build -t klea
+# run
+docker run --rm -it -v $PWD:/audio klea -- ស្រុកខ្មែរ /audio/test.wav
+```
