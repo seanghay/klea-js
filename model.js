@@ -28,18 +28,19 @@ function intersperse(array, something) {
   return result
 }
 
-if (!fsSync.existsSync("g2p.fst")) {
-  console.error("'g2p.fst' file not found")
+const fst = "g2p.fst"
+if (!fsSync.existsSync(fst)) {
+  console.error(`${fst} file not found`)
   process.exit(1);
 }
-const model ="G_60000.onnx"
+const model ="G_60000.int8.onnx"
 if (!fsSync.existsSync(model)) {
   console.error(`${model} file not found`)
   process.exit(1);
 }
 
 // system initialization
-phonetisaurus.FS.writeFile("/model.fst", await fs.readFile("g2p.fst"));
+phonetisaurus.FS.writeFile("/model.fst", await fs.readFile(fst));
 const tokenizer = JSON.parse(await fs.readFile("tokenizer.json"));
 const phonemizer = new phonetisaurus.Phonemizer("/model.fst", "");
 const session = await ort.InferenceSession.create(model);
