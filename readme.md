@@ -22,10 +22,22 @@ npm i
 npm start ស្រុកខ្មែរ test.wav
 ```
 
+# Serving
+
+Running a web service to serve text-to-speech request
+
+```bash
+npm run serve
+```
+
+Visit: [http://localhost:3000/កិច្ចការ](http://localhost:3000/កិច្ចការ)
+
 ## Container
 
 ```bash
-docker build -t klea
-# run
-docker run --rm -it -v $PWD:/audio klea -- ស្រុកខ្មែរ /audio/test.wav
+docker build -t klea .
+# run webservice
+docker run --rm -it -p 3000:3000 klea
 ```
+
+Visit: [http://localhost:3000/កិច្ចការ](http://localhost:3000/កិច្ចការ)
